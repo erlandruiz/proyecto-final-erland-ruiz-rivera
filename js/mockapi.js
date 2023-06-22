@@ -1,6 +1,8 @@
 const urlProducts = "https://64937e8a0da866a953667548.mockapi.io/api/v1/productos2"
 
 const contenedorProductosMockapi = document.querySelector('#contenedor-productos-mockapi')
+
+
 const productos2 =[]
 
 const formulario = document.querySelector('#formulario')
@@ -35,6 +37,12 @@ formulario.addEventListener('submit', (e)=>{
 
 })
 
+// Invocamos al DOMContentLoaded para verificar que todos los elementos del DOM esten cargados 
+
+addEventListener('DOMContentLoaded',()=>{
+    traerProductos()
+})
+
 
 
 // Traendo los productos de mockApi
@@ -44,13 +52,13 @@ function traerProductos() {
     .then((data)=>{
         productos2.push(...data)
 
-        // console.log(productos2)
-        // console.log(data)
+      
+        
         cargarProductosMockapi()
     });
 }
 
-traerProductos()
+
 
 // Cargando los productos del mockapi
 function cargarProductosMockapi() {
@@ -64,18 +72,23 @@ function cargarProductosMockapi() {
             <div class="producto-detalles" >
                     <h3 class="producto-titulo" >${producto.titulo}</h3>
                     <p class="producto-precio" >$${producto.precio}</p>
+                    <button class="producto-agregar btn-eliminar" id = '${producto.id}'>Eliminar</button>
             </div>`
-
+           
             contenedorProductosMockapi.append(div)
 
+            
            
     })
+    const btnEliminar = document.querySelectorAll('.btn-eliminar')
+    eliminarProducto(btnEliminar)
     
 }
 
 // Creando un producto para subir al mockapi
 
 async function crearProductoAsync(producto){
+   
     const resp = await fetch(urlProducts, {
         method: "POST",
         body: JSON.stringify(producto),
@@ -86,8 +99,43 @@ async function crearProductoAsync(producto){
     })
 
     const data = await resp.json()
-    traerProductos()
+    productos2.push(data)
+    cargarProductosMockapi()
+   
+    
 
-    console.log(data)
+    
 }
 
+// Creando la funcion para eliminar data del mockapi
+
+function eliminarProducto(querySelector) {
+    querySelector.forEach((btn)=>{
+        btn.addEventListener('click',(e)=>{
+            eliminarProductoAsync(e.currentTarget.id)
+        })
+    })
+    
+}
+
+// Elimando productos Async
+
+async function eliminarProductoAsync(id) {
+    const resp = await fetch(`${urlProducts}/${id}`,{
+        method: "DELETE",
+    })
+
+    const data = await resp.json()
+    borrarProductoDelArray(data.id)
+    
+    
+}
+
+function borrarProductoDelArray(id) {
+    const producto = productos2.find((producto)=>{
+        return producto.id === id
+    })
+    const index = productos2.indexOf(producto)
+    productos2.splice(index,1)
+    cargarProductosMockapi()
+}
