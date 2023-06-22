@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErlandShop</title>
+
+    <!-- Agregando Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- Agregando toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+   
+  
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <aside>
+            <header>
+                <h1 class="logo">Productos en MockApi</h1>
+            </header>
+
+            <nav>
+                <ul class="menu">
+                
+                    </li>
+
+                    <li>
+                        <a id="todos-mockapi" class="boton-menu boton-volver" href="./index.html">
+                            <i class="bi bi-arrow-return-left"></i>Seguir comprando 
+                            </a>
+                    </li>
+
+                    <li>
+                        <a class="boton-menu boton-mockapi active" href="./mockapi.html">
+                            <i class="bi bi-hand-index-thumb"></i>Productos moackApi 
+                            
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <footer>
+                <p class="texto-footer">© Tarea de Javascript</p>
+            </footer>
+
+        </aside>
+
+
+
+
+        <main>
+            <h2 class="titulo-principal-mockapi" id="titulo-principal-mockapi">Todos los productos en mockapi</h2>
+            <div id="contenedor-productos-mockapi" class="contenedor-productos-mockapi">
+
+     
+       
+              <!-- Aquí se va a rellenar con producto del Javascript -->
+            
+              
+       
+
+
+            </div>
+
+            <div class="" id="seccionAgregar">
+                <h2 class="titulo-agregar-mockapi">Agregar Producto</h2>
+                <form id="formulario">
+                  <div class="form-group">
+                    <label for="product-name">Id del producto</label>
+                    <input type="text" id="id-mockapi" name="product-name" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="product-name">Titulo del producto</label>
+                    <input type="text" id="titulo-mockapi" name="product-name" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="product-name">Url de la imagen del producto</label>
+                    <input type="text" id="imagen-mockapi" name="product-name" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="product-name">Nombre de categoría</label>
+                    <input type="text" id="categoria-nombre-mockapi" name="product-name" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="product-name">Id de la categoría</label>
+                    <input type="text" id="categoria-id-mockapi" name="product-name" required />
+                  </div>
+      
+                  <div class="form-group">
+                    <label for="product-price">Precio del Producto:</label>
+                    <input type="number" id="precio-mockapi" class="ingreso__datos__input" name="price" required />
+                  </div>
+      
+                 
+      
+                  <input
+                    type="submit"
+                    id="btnAddProduct"
+                    value="Agregar Producto"
+                    class="btn-primary button"
+                  />
+                </form>
+              </div>
+
+
+        </main>
+
+
+    </div>
+
+      <!-- AGREGANDO SWEET ALERT  -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- AGREGANDO TOASTIFY  -->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    
+    <script src="./js/mockapi.js"></script>
+
+   
+</body>
+</html>
