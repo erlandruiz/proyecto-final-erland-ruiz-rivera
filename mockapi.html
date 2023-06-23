@@ -99,16 +99,53 @@
                     <input type="number" id="precio-mockapi" class="ingreso__datos__input" name="price" required />
                   </div>
       
-                 
-      
                   <input
                     type="submit"
                     id="btnAddProduct"
                     value="Agregar Producto"
-                    class="btn-primary button"
+                    class="btn-primary button btn-agregar"
                   />
                 </form>
-              </div>
+            </div>
+
+            <div class="" id="seccionEditar">
+              <h2 class="titulo-editar-mockapi">Editar Producto</h2>
+              <form id="formularioEditar">
+                <div class="form-group">
+                  <label for="product-name">Id del producto</label>
+                  <input type="text" id="id-mockapi-editar" name="product-name" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="product-name">Titulo del producto</label>
+                  <input type="text" id="titulo-mockapi-editar" name="product-name" required />
+                </div>
+                <div class="form-group">
+                  <label for="product-name">Url de la imagen del producto</label>
+                  <input type="text" id="imagen-mockapi-editar" name="product-name" required />
+                </div>
+                <div class="form-group">
+                  <label for="product-name">Nombre de categoría</label>
+                  <input type="text" id="categoria-nombre-mockapi-editar" name="product-name" required />
+                </div>
+                <div class="form-group">
+                  <label for="product-name">Id de la categoría</label>
+                  <input type="text" id="categoria-id-mockapi-editar" name="product-name" required />
+                </div>
+    
+                <div class="form-group">
+                  <label for="product-price">Precio del Producto:</label>
+                  <input type="number" id="precio-mockapi-editar" class="ingreso__datos__input" name="price" required />
+                </div>
+    
+                <input
+                  type="submit"
+                  id="btnEditProduct"
+                  value="Editar Producto"
+                  class="btn-primary button btn-editar"
+                />
+              </form>
+          </div>
 
 
         </main>

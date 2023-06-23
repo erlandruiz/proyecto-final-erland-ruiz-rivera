@@ -7,6 +7,7 @@
     --clr-gray: #e2e2e2;
     --clr-blue: #251896;
     --clr-red: #962b18;
+    --clr-honey: #EC9706;
     --normal-font-size: .938rem;
     --font-medium: 500;
 }
@@ -124,7 +125,8 @@ main{
 
 .titulo-principal,
 .titulo-principal-mockapi,
-.titulo-agregar-mockapi{
+.titulo-agregar-mockapi,
+.titulo-editar-mockapi{
     color: var(--clr-main);
     margin-bottom: 2rem;
 }
@@ -273,12 +275,23 @@ main{
 
 
 /* mockapi CSS */
-.titulo-agregar-mockapi{
+.titulo-agregar-mockapi,
+.titulo-editar-mockapi{
     margin-top: 2rem;
 }
 
 .form-group{
     color: var(--clr-main);
+}
+
+.btn-agregar{
+    background-color: var(--clr-main);
+    color: var(--clr-white);
+}
+
+.btn-agregar:hover{
+    background-color: var(--clr-white);
+    color:var(--clr-main)
 }
 
 .button{
@@ -299,10 +312,19 @@ main{
     background-color: var(--clr-red);
     color: var(--clr-white);
   }
-  
+
   .btn-eliminar:hover{
     background-color: var(--clr-white);
     color: var(--clr-red);
+  }
+
+  .btn-editar{
+    background-color: var(--clr-honey);
+  }
+
+  .btn-editar:hover{
+    background-color: var(--clr-white);
+    color: var(--clr-honey);
   }
   
 

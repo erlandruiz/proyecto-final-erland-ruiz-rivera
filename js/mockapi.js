@@ -3,12 +3,14 @@ const urlProducts = "https://64937e8a0da866a953667548.mockapi.io/api/v1/producto
 const contenedorProductosMockapi = document.querySelector('#contenedor-productos-mockapi')
 
 
-const productos2 =[]
+let productos2 =[]
 
 const formulario = document.querySelector('#formulario')
 
 
 // Datos que se subiran al mockapi
+
+const seccionAgregar = document.querySelector('#seccionAgregar')
 
 const idMockpi = document.querySelector('#id-mockapi')
 const tituloMockapi = document.querySelector('#titulo-mockapi')
@@ -17,6 +19,21 @@ const imagenMockapi = document.querySelector('#imagen-mockapi')
 const categoriaNombreMockapi = document.querySelector('#categoria-nombre-mockapi')
 const categoriaIdMockapi = document.querySelector('#categoria-id-mockapi')
 const precioMockapi = document.querySelector('#precio-mockapi')
+
+//variables a capturar de la seccion Editar
+
+const seccionEditar = document.querySelector('#seccionEditar')
+const formularioEditar = document.querySelector('#formularioEditar')
+const idMockapiEditar = document.querySelector('#id-mockapi-editar')
+const tituloMockapiEditar = document.querySelector('#titulo-mockapi-editar')
+const imagenMockapiEditar = document.querySelector('#imagen-mockapi-editar')
+const categoriaNombreMockapiEditar = document.querySelector('#categoria-nombre-mockapi-editar')
+const categoriaIdMockapiEditar = document.querySelector('#categoria-id-mockapi-editar')
+const precioMockapiEditar = document.querySelector('#precio-mockapi-editar')
+const btnEditProduct = document.querySelector('#btnEditProduct')
+
+
+
 
 
 formulario.addEventListener('submit', (e)=>{
@@ -73,6 +90,7 @@ function cargarProductosMockapi() {
                     <h3 class="producto-titulo" >${producto.titulo}</h3>
                     <p class="producto-precio" >$${producto.precio}</p>
                     <button class="producto-agregar btn-eliminar" id = '${producto.id}'>Eliminar</button>
+                    <button class="producto-agregar btn-modificar" id = '${producto.id}'>Modificar</button>
             </div>`
            
             contenedorProductosMockapi.append(div)
@@ -80,8 +98,16 @@ function cargarProductosMockapi() {
             
            
     })
+
+    //Agredando del DOM los botones creados para eliminar y luego llamar a la funcion
     const btnEliminar = document.querySelectorAll('.btn-eliminar')
     eliminarProducto(btnEliminar)
+
+
+    //Agredando del DOM los botones creados para modificar y luego llamar a la funcion
+    const btnModificar = document.querySelectorAll('.btn-modificar')
+    editarProducto(btnModificar)
+    
     
 }
 
@@ -101,7 +127,7 @@ async function crearProductoAsync(producto){
     const data = await resp.json()
     productos2.push(data)
     cargarProductosMockapi()
-   
+   formulario.reset()
     
 
     
@@ -138,4 +164,62 @@ function borrarProductoDelArray(id) {
     const index = productos2.indexOf(producto)
     productos2.splice(index,1)
     cargarProductosMockapi()
+}
+
+//Funcion de editar producto
+
+function editarProducto(querySelectors) {
+    querySelectors.forEach((btn)=>{
+        btn.addEventListener('click', (e)=>{
+            // seccionEditar.classList.remove('disabled')
+            // seccionAgregar.classList.add('disabled')
+            const producto = productos2.find((producto)=>{
+                return producto.id === e.currentTarget.id
+            })         
+                idMockapiEditar.value = producto.id
+                tituloMockapiEditar.value = producto.titulo,
+                imagenMockapiEditar.value = producto.imagen,
+                categoriaNombreMockapiEditar.value = producto.categoria.nombre,
+                categoriaIdMockapiEditar.value = producto.categoria.id
+                precioMockapiEditar.value = producto.precio
+        })
+    })
+}
+
+enviarModificacionMockApi()
+
+
+function enviarModificacionMockApi() {
+    formularioEditar.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const data ={
+            id: idMockapiEditar.value,
+        titulo: tituloMockapiEditar.value,
+        imagen: imagenMockapiEditar.value,
+        categoria:{
+            nombre: categoriaNombreMockapiEditar.value,
+            id: categoriaIdMockapiEditar.value
+        },
+        precio: parseInt(precioMockapiEditar.value)
+        }
+
+   
+        editarProductAsync(data.id, data)
+    })
+}
+
+async function editarProductAsync(id, data) {
+    const resp = await fetch(`${urlProducts}/${id}`,{
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers:{
+            "Content-type": "application/json",
+        },
+    })
+
+   productos2 = []
+  
+    traerProductos()
+    formularioEditar.reset()
+   
 }
